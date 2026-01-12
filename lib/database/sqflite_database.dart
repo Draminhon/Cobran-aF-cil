@@ -41,4 +41,17 @@ class SqfliteDatabase {
         ),
     ];
   }
+
+  Future<void> updateClient(ClientModel cliente) async {
+    final db = await _getDatabase();
+
+    await db.update(
+      'clientes',
+      cliente.toMap(),
+
+      where: 'id = ?',
+
+      whereArgs: [cliente.id],
+    );
+  }
 }

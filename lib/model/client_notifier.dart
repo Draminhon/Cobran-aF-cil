@@ -14,7 +14,6 @@ class ClientNotifier extends ChangeNotifier{
 
   Future<void> carregarClientes() async{
    _clients = await SqfliteDatabase().clientes();
-   print(_clients);
     notifyListeners();
   }
 }

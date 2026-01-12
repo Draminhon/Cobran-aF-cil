@@ -41,4 +41,17 @@ factory ClientModel.fromMap(Map<String, dynamic> map) {
     return 'Cliente{id: $id, name: $name, icon: $icon, iconColor: $iconColor, divida: $divida}';
   }
 
+  ClientModel copyWith({
+    String? name,
+    IconData? icon,
+    Color? iconColor,
+    double? divida
+  }) {
+    return ClientModel(
+      divida: divida ?? this.divida,
+       icon: icon ?? this.icon,
+        iconColor: iconColor ?? this.iconColor,
+         name: name ?? this.name);
+  }
+
 }

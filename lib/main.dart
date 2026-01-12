@@ -1,4 +1,4 @@
-import 'package:cobranca_facil/homepage_screen.dart';
+import 'package:cobranca_facil/screens/homepage_screen.dart';
 import 'package:cobranca_facil/model/client_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -6,8 +6,9 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
 void main() async {
+  
   WidgetsFlutterBinding.ensureInitialized();
-  final database = openDatabase(
+   openDatabase(
     join(await getDatabasesPath(), 'cliente_database.db'),
 
     onCreate: (db, version) {
@@ -30,6 +31,6 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: HomepageScreen());
+    return const MaterialApp(home: HomepageScreen(),debugShowCheckedModeBanner:false);
   }
 }
