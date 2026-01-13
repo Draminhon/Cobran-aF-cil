@@ -95,21 +95,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
 
           SizedBox(height: 25,),
 
-           FloatingActionButton(
-            backgroundColor: Colors.green,
-            onPressed: () {
-              final cliente = ClientModel(
-                divida: 0,
-                icon: _utils.randomIcon(),
-          
-                iconColor: _utils.randomColor(),
-                name: "Novo Cliente",
-              );
-              _sql.insertClient(cliente);
-              notifier.carregarClientes();
-            },
-            child: Icon(Icons.fastfood_sharp, color: Colors.white,)
-          ),
+
         ],
       ),
     );

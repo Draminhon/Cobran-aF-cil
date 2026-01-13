@@ -2,6 +2,7 @@ import 'package:cobranca_facil/constants/color_constants.dart';
 import 'package:cobranca_facil/database/sqflite_database.dart';
 import 'package:cobranca_facil/model/client_model.dart';
 import 'package:cobranca_facil/model/client_notifier.dart';
+import 'package:cobranca_facil/screens/clientaddproductspage_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -36,7 +37,7 @@ class _ClientpageScreenState extends State<ClientpageScreen> {
           child: Padding(
             padding: const EdgeInsets.only(top: 40),
             child: Column(
-              spacing: 30,
+              spacing: 20,
               children: [
                 Container(
                   height: 200,
@@ -89,7 +90,10 @@ class _ClientpageScreenState extends State<ClientpageScreen> {
                               name: _clienteName.text,
                             ),
                           );
-    Provider.of<ClientNotifier>(context, listen:false).carregarClientes();
+                          Provider.of<ClientNotifier>(
+                            context,
+                            listen: false,
+                          ).carregarClientes();
 
                           _isEditingName = false;
                         });
@@ -106,7 +110,10 @@ class _ClientpageScreenState extends State<ClientpageScreen> {
                               name: _clienteName.text,
                             ),
                           );
-    Provider.of<ClientNotifier>(context, listen:false).carregarClientes();
+                          Provider.of<ClientNotifier>(
+                            context,
+                            listen: false,
+                          ).carregarClientes();
 
                           _isEditingName = false;
                         });
@@ -115,11 +122,89 @@ class _ClientpageScreenState extends State<ClientpageScreen> {
                   ),
                 ),
                 Text(
-                  'Dívida: ${widget.client.divida.toString()}',
+                  'Dívida: R\$ ${widget.client.divida.toString()}',
                   style: TextStyle(
                     color: Colors.red,
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
+                  ),
+                ),
+
+
+
+              Padding(
+                padding: const EdgeInsets.only(right: 250, top: 50),
+                child: Text("Produtos pegos", style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16
+                ),),
+              ),
+
+
+
+
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return ClientaddproductspageScreen();
+                        },
+                      ),
+                    );
+                  },
+
+                  child: Container(
+                    width: 374,
+                    height: 48,
+
+                    decoration: BoxDecoration(
+                      color: Colors.green,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Abater Dívida",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return ClientaddproductspageScreen();
+                        },
+                      ),
+                    );
+                  },
+
+                  child: Container(
+                    width: 374,
+                    height: 48,
+
+                    decoration: BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Adicionar Produto",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ],
