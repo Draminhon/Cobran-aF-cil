@@ -1,7 +1,7 @@
 import 'package:cobranca_facil/constants/color_constants.dart';
 import 'package:cobranca_facil/database/sqflite_database.dart';
 import 'package:cobranca_facil/model/client_model.dart';
-import 'package:cobranca_facil/model/client_notifier.dart';
+import 'package:cobranca_facil/notifiers/client_notifier.dart';
 import 'package:cobranca_facil/screens/clientpage_screen.dart';
 import 'package:cobranca_facil/utils.dart';
 import 'package:flutter/material.dart';
@@ -38,13 +38,19 @@ class _HomepageScreenState extends State<HomepageScreen> {
             ),
             itemCount: notifier.clients.length,
             itemBuilder: (context, index) {
+            print(notifier.clients[index]);
+
               return Column(
                 children: [
                   GestureDetector(
                     onTap: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) {
                         return ClientpageScreen(client: notifier.clients[index],);
-                      },));
+                      },
+                    settings: RouteSettings(arguments: {
+                      'idCliente': notifier.clients[index].id
+                    })
+                      ));
                     },
                     child: Container(
                       height: 150,

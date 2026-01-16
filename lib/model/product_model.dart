@@ -16,5 +16,11 @@ class ProductModel {
   });
 
   double get totalValue => price * quantity;
-
+Map<String, dynamic> toMap() {
+    return {
+      'name': name, // Certifique-se que o nome da chave é igual à coluna do banco
+      'price': price,
+      'image': image,
+    };
+  }
 }
