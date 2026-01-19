@@ -18,7 +18,7 @@ class ClientaddproductspageScreen extends StatefulWidget {
 class _ClientaddproductspageScreenState
     extends State<ClientaddproductspageScreen> {
   final _dbSql = SqfliteDatabase();
-
+  
   @override
   void initState() {
     Provider.of<ProductNotifier>(context, listen:false).carregarProdutos();
@@ -40,6 +40,8 @@ class _ClientaddproductspageScreenState
                 if(mounted){
                   Provider.of<ClientNotifier>(context, listen: false).carregarClientes();
                 }
+
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Produto adicionado!"),duration: Duration(milliseconds: 200),));
             },
             child: Container(
               margin: EdgeInsets.only(top: 20, left: 20, right: 20),

@@ -16,4 +16,23 @@ class ClientNotifier extends ChangeNotifier{
    _clients = await SqfliteDatabase().clientes();
     notifyListeners();
   }
+
+  Future<void> abaterDividaCliente(ClientModel client, double divida) async{
+
+    int idCliente = client.id!;
+    final clientSelected = _clients.firstWhere((element) => element.id == idCliente,);
+
+    print("Valor subtraido: ${(clientSelected.divida - divida)}");
+    ClientModel newClient = ClientModel(
+      id: client.id,
+      divida: (clientSelected.divida - divida),
+     icon: client.icon, 
+     iconColor: client.iconColor, 
+     name: client.name);
+
+    await SqfliteDatabase().updateClient(newClient);
+    notifyListeners();
+
+
+  }
 }

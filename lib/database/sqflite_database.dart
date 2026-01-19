@@ -137,6 +137,58 @@ Future<void> vincularProdutoECliente(int clienteId, int produtoId) async {
   });
 }
 
+
+Future<void> removerProdutoDoCliente(int clientId, int produtoId) async {
+
+  final db = await _getDatabase();
+
+  await db.transaction((txn) async {
+    
+        List<Map<String, dynamic>> produtoRes = await txn.query(
+      'produtos', 
+      columns: ['price'],
+      where: 'id = ?',
+      whereArgs: [produtoId],
+    );
+
+      if(produtoRes.isEmpty) return;
+      double precoProduto = double.parse(produtoRes.first['price'].toString());
+
+      List<Map<String, dynamic>> res = await txn.query(
+        'clientesProdutos',
+        where: 'client_id = ? AND product_id = ?',
+        whereArgs: [clientId, produtoId] 
+      );
+
+      if (res.isNotEmpty){
+        int quantidadeAtual = res.first['quantidade'] as int;
+                 if(quantidadeAtual == 1){
+          await txn.delete('clientesProdutos',
+          where: 'client_id = ? AND product_id = ?',
+          whereArgs: [clientId, produtoId]
+          );
+         }
+        await txn.update('clientesProdutos',
+         {
+          'quantidade': quantidadeAtual -1
+         },
+         where: 'client_id = ? AND product_id = ?',
+         whereArgs: [clientId, produtoId]
+         );
+
+         await txn.rawUpdate('UPDATE clientes SET divida = divida - ? WHERE id = ?',
+          [precoProduto, clientId]
+         );
+
+
+      }
+
+
+
+  },);
+
+
+}
   Future<List<Map<String, dynamic>>> produtoClienteResultado(
     int idCliente,
   ) async {
@@ -152,5 +204,17 @@ Future<void> vincularProdutoECliente(int clienteId, int produtoId) async {
 ''',
       [idCliente],
     );
+  }
+
+  Future<void> deletarCliente(int idCliente) async{
+    final db = await _getDatabase();
+
+    await db.delete('clientes',
+    where: 'id = ?',
+    whereArgs: [idCliente]
+    );
+
+
+
   }
 }
