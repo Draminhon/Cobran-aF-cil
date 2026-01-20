@@ -9,6 +9,7 @@ import 'package:path/path.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  
   openDatabase(
     join(await getDatabasesPath(), 'cliente_database.db'),
     onConfigure: (db) async {
@@ -31,7 +32,6 @@ void main() async {
         'CREATE TABLE clientesProdutos(id INTEGER PRIMARY KEY, client_id INTEGER NOT NULL, product_id INTEGER NOT NULL, purchase_date INTEGER, quantidade INTEGER, FOREIGN KEY (client_id) REFERENCES clientes (id) ON DELETE CASCADE, FOREIGN KEY (product_id) REFERENCES produtos (id) ON DELETE CASCADE, UNIQUE(client_id, product_id) ON CONFLICT IGNORE)',
       );
     },
-
   );
   runApp(
     MultiProvider(

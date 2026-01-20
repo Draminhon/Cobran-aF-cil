@@ -7,11 +7,16 @@ environment:
   sdk: ^3.9.2
 
 dependencies:
+  camera: ^0.11.3
   cupertino_icons: ^1.0.8
   flutter:
     sdk: flutter
+  flutter_launcher_icons: ^0.14.4
   font_awesome_flutter: ^10.12.0
+  path: ^1.9.1
+  path_provider: ^2.1.5
   provider: ^6.1.5+1
+  rename_app: ^1.6.5
   shared_preferences: ^2.5.4
   sqflite: ^2.4.2
 
@@ -25,3 +30,14 @@ flutter:
 
   assets:
     - lib/assets/images/
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "lib/assets/icon/logo.png"
+  adaptive_icon_background: "#FFFFFF" 
+
+rename_app:
+  targets:
+    android: "Comércio Fácil"
+    ios: "Comércio Fácil"

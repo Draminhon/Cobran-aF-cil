@@ -3,6 +3,7 @@ import 'package:cobranca_facil/database/sqflite_database.dart';
 import 'package:cobranca_facil/notifiers/client_notifier.dart';
 import 'package:cobranca_facil/notifiers/product_notifier.dart';
 import 'package:cobranca_facil/repository/products_repository.dart';
+import 'package:cobranca_facil/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -57,7 +58,7 @@ class _ClientaddproductspageScreenState
                 children: [
                   SizedBox(height: 10,),
                   Expanded(
-                    child: SizedBox(child: Image.asset(notifier.produtos[index].image)),
+                    child: SizedBox(child: Utils().displayImage(notifier.produtos[index].image)),
                   ),
 
                   Padding(

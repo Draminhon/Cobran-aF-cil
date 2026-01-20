@@ -169,34 +169,7 @@ class _PaymentpageScreenState extends State<PaymentpageScreen> {
                   },
                 ),
               ),
-                   GestureDetector(
-
-                                                      onTap: () {
-
-                              
-                },
-
-                child: Container(
-                  width: 374,
-                  height: 48,
-
-margin: EdgeInsets.only(top: 150),
-                  decoration: BoxDecoration(
-                    color: Colors.green,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Center(
-                    child: Text(
-                      "Confirmar Pagamento",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-              )
+                  
             ],
           ),
         ),

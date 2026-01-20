@@ -4,7 +4,7 @@ class ClientModel {
 
   final int? id;
   final String name;
-  final IconData icon;
+  final int icon;
   final Color iconColor;
   final double divida;
 
@@ -21,7 +21,7 @@ class ClientModel {
       'id': id,
       'name': name,
       'divida': divida,
-      'icon': icon.codePoint,
+      'icon': icon,
       'iconColor': iconColor.toARGB32(),
     };
   }
@@ -30,7 +30,7 @@ factory ClientModel.fromMap(Map<String, dynamic> map) {
       id: map['id'],
       name: map['name'],
       divida: map['divida'],
-      icon: IconData(map['icon'], fontFamily: 'MaterialIcons'),
+      icon: map['icon'],
       iconColor: Color(map['iconColor']),
     );
   }
@@ -43,7 +43,7 @@ factory ClientModel.fromMap(Map<String, dynamic> map) {
 
   ClientModel copyWith({
     String? name,
-    IconData? icon,
+    int? icon,
     Color? iconColor,
     double? divida
   }) {

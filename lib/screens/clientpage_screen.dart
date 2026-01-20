@@ -4,6 +4,7 @@ import 'package:cobranca_facil/model/client_model.dart';
 import 'package:cobranca_facil/notifiers/client_notifier.dart';
 import 'package:cobranca_facil/screens/clientaddproductspage_screen.dart';
 import 'package:cobranca_facil/screens/paymentpage_screen.dart';
+import 'package:cobranca_facil/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -65,8 +66,10 @@ class _ClientpageScreenState extends State<ClientpageScreen> {
                       width: 0.5,
                     ),
                   ),
-                  child: Icon(
+                  child:  Icon(IconData(
+                    
                     widget.client.icon,
+                    fontFamily: 'MaterialIcons'),
                     color: widget.client.iconColor,
                     size: 110,
                   ),
@@ -195,7 +198,7 @@ class _ClientpageScreenState extends State<ClientpageScreen> {
                                   SizedBox(
                                     width: 70,
                                     height: 70,
-                                    child: Image.asset(produto['image']),
+                                    child: Utils().displayImage(produto['image']),
                                   ),
             
                                   const SizedBox(

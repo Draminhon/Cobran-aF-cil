@@ -37,7 +37,7 @@ class SqfliteDatabase {
         ClientModel(
           id: id,
           divida: divida,
-          icon: IconData(icon, fontFamily: 'MaterialIcons'),
+          icon: icon,
           iconColor: Color(iconColor),
           name: name,
         ),
@@ -92,6 +92,35 @@ class SqfliteDatabase {
     ];
   }
 
+Future<void> insertProduto(ProductModel produto) async{
+  final db = await _getDatabase();
+
+  await db.insert(
+    'produtos',
+    produto.toMap(),
+    conflictAlgorithm: ConflictAlgorithm.replace
+  );
+}
+
+Future<void> updateProduct(ProductModel produto) async {
+  final db = await _getDatabase();
+
+  await db.update('produtos',
+   produto.toMap(),
+   where: 'id = ?',
+   whereArgs: [produto.id],
+   );
+}
+
+Future<void> deleteProduct(int productId) async{
+  final db = await _getDatabase();
+
+  await db.delete(
+    'produtos',
+    where: 'id = ?',
+    whereArgs: [productId]
+  );
+}
   //produtoCliente
 Future<void> vincularProdutoECliente(int clienteId, int produtoId) async {
   final db = await _getDatabase();
@@ -167,14 +196,16 @@ Future<void> removerProdutoDoCliente(int clientId, int produtoId) async {
           where: 'client_id = ? AND product_id = ?',
           whereArgs: [clientId, produtoId]
           );
-         }
-        await txn.update('clientesProdutos',
+         }else{
+ await txn.update('clientesProdutos',
          {
           'quantidade': quantidadeAtual -1
          },
          where: 'client_id = ? AND product_id = ?',
          whereArgs: [clientId, produtoId]
          );
+         }
+       
 
          await txn.rawUpdate('UPDATE clientes SET divida = divida - ? WHERE id = ?',
           [precoProduto, clientId]
