@@ -2,6 +2,7 @@ import 'package:cobranca_facil/constants/color_constants.dart';
 import 'package:cobranca_facil/database/sqflite_database.dart';
 import 'package:cobranca_facil/model/client_model.dart';
 import 'package:cobranca_facil/notifiers/client_notifier.dart';
+import 'package:cobranca_facil/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -91,7 +92,7 @@ class _PaymentpageScreenState extends State<PaymentpageScreen> {
                         final produto = produtos[index];
           
                         return Padding(
-                          padding: const EdgeInsets.fromLTRB(17.0, 8.0, 8.0, 8.0),
+                          padding: const EdgeInsets.fromLTRB(17.0, 8.0, 17.0, 8.0),
                           child: GestureDetector(
                             onTap: () {
                               setState(() {
@@ -115,7 +116,7 @@ class _PaymentpageScreenState extends State<PaymentpageScreen> {
                                   SizedBox(
                                     width: 70,
                                     height: 70,
-                                    child: Image.asset(produto['image']),
+                                    child:Utils().displayImage(produto['image']),
                                   ),
                                       
                                   const SizedBox(
